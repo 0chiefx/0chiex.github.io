@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>从零开始的VPS酒馆搭建（喂饭教程） | sudo Cheers</title><meta name="author" content="ChiefX"><meta name="copyright" content="ChiefX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从零开始的VPS酒馆搭建（喂饭教程）前言利用VPS搭建酒馆有不少好处，比如稳定运行、性能与扩展性强、网络优化好（国外VPS）、集成其他服务（caddy），最重要的就是方便！方便！还是方便！不限制使用设备，有网就行（不用梯子🐶（国外VPS）），随时随地想用就用。不过缺点也很明显，首先就是搭建难度稍微大一丢丢，其次是需要一些钱（购买服务器、域名）。 那么，接下来本喂饭教程就从最最基本的服务器购买开始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的VPS酒馆搭建（喂饭教程）">
+<meta property="og:url" content="http://example.com/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/index.html">
+<meta property="og:site_name" content="sudo Cheers">
+<meta property="og:description" content="从零开始的VPS酒馆搭建（喂饭教程）前言利用VPS搭建酒馆有不少好处，比如稳定运行、性能与扩展性强、网络优化好（国外VPS）、集成其他服务（caddy），最重要的就是方便！方便！还是方便！不限制使用设备，有网就行（不用梯子🐶（国外VPS）），随时随地想用就用。不过缺点也很明显，首先就是搭建难度稍微大一丢丢，其次是需要一些钱（购买服务器、域名）。 那么，接下来本喂饭教程就从最最基本的服务器购买开始">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/head.png">
+<meta property="article:published_time" content="2025-07-02T15:12:19.000Z">
+<meta property="article:modified_time" content="2025-07-02T16:52:03.921Z">
+<meta property="article:author" content="ChiefX">
+<meta property="article:tag" content="sillytavern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "从零开始的VPS酒馆搭建（喂饭教程）",
+  "url": "http://example.com/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/",
+  "image": "http://example.com/image/head.png",
+  "datePublished": "2025-07-02T15:12:19.000Z",
+  "dateModified": "2025-07-02T16:52:03.921Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "ChiefX",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '从零开始的VPS酒馆搭建（喂饭教程）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="cat__scene"><div class="cat__main"><div class="cat__body"></div><div class="cat__body"></div><div class="cat__tail"></div><div class="cat__head"></div></div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/bak.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/image/icon_logo.png" alt="Logo"><span class="site-name">sudo Cheers</span></a><a class="nav-page-title" href="/"><span class="site-name">从零开始的VPS酒馆搭建（喂饭教程）</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">从零开始的VPS酒馆搭建（喂饭教程）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-02T15:12:19.000Z" title="发表于 2025-07-02 23:12:19">2025-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-02T16:52:03.921Z" title="更新于 2025-07-03 00:52:03">2025-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/sillytavern%E7%9B%B8%E5%85%B3/">sillytavern相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="从零开始的VPS酒馆搭建（喂饭教程）"><a href="#从零开始的VPS酒馆搭建（喂饭教程）" class="headerlink" title="从零开始的VPS酒馆搭建（喂饭教程）"></a>从零开始的VPS酒馆搭建（喂饭教程）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>利用VPS搭建酒馆有不少好处，比如<strong>稳定运行</strong>、<strong>性能与扩展性强</strong>、<strong>网络优化好</strong>（国外VPS）、<strong>集成其他服务（caddy）</strong>，最重要的就是方便！方便！还是方便！不限制使用设备，有网就行（不用梯子🐶（国外VPS）），随时随地想用就用。不过缺点也很明显，首先就是搭建难度稍微大一丢丢，其次是需要一些钱（购买服务器、域名）。</p>
+<p>那么，接下来本喂饭教程就从最最基本的服务器购买开始，破除技术壁垒，一步一步带领纯小白成功搭建，话不多说，马上开始！（多图警告）</p>
+<h2 id="服务器相关"><a href="#服务器相关" class="headerlink" title="服务器相关"></a>服务器相关</h2><h3 id="服务器选择"><a href="#服务器选择" class="headerlink" title="服务器选择"></a>服务器选择</h3><p>最近也是找了一圈VPS，最后选择的是腾讯云的<strong>新加坡</strong>轻量应用服务器，原因就是国外平台对于小白来说不好操作，其次就是价格算是比较便宜（<strong>99一年，可原价续费一次</strong>），也不用梯子了，想要选择其他的也可以，不过本教程按腾讯轻量应用服务器为例。</p>
+<p>购买链接：<a target="_blank" rel="noopener" href="https://mc.tencent.com/o2Uhfxg9">https://mc.tencent.com/o2Uhfxg9</a></p>
+<p>打开此链接并下拉，可以看到箭头指的服务器，选择购买，我已经买过了就截不了图了，按教程安装系统即可（<strong>Ubuntu为例</strong>）。<img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702225832991.png" alt="image-20250702225832991"></p>
+<h3 id="服务器基础"><a href="#服务器基础" class="headerlink" title="服务器基础"></a>服务器基础</h3><p>输入网址：<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/%EF%BC%8C%E8%BF%9B%E5%85%A5%E6%8E%A7%E5%88%B6%E5%8F%B0%EF%BC%8C%E6%89%BE%E5%88%B0%E4%B8%8B%E5%9B%BE%E7%AE%AD%E5%A4%B4%E6%89%80%E6%8C%87%E7%9A%84%E6%8C%89%E9%92%AE%E5%B9%B6%E7%82%B9%E5%87%BB%E3%80%82">https://console.cloud.tencent.com/，进入控制台，找到下图箭头所指的按钮并点击。</a></p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702230336301.png" alt="image-20250702230336301"></p>
+<p>可以看到启动好的服务器，如下图。</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702230528783.png" alt="image-20250702230528783"></p>
+<p>点击三个点，修改密码</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702231057558.png" alt="image-20250702231057558"></p>
+<p>修改完成之后可以尝试登录，点击卡片进入，选择密码&#x2F;密钥登录，输入密码即可登录（默认用户名：ubuntu）</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702231321222.png" alt="image-20250702231321222"></p>
+<p>ok，到了这一步之后，最最基础的服务器已经准备好了，接下来是安全配置。</p>
+<h3 id="服务器安全（可选，建议）"><a href="#服务器安全（可选，建议）" class="headerlink" title="服务器安全（可选，建议）"></a>服务器安全（可选，建议）</h3><h4 id="修改22端口"><a href="#修改22端口" class="headerlink" title="修改22端口"></a>修改22端口</h4><p>在云服务器（如VPS）上修改默认的 <strong>22端口</strong>（SSH服务端口）主要是出于<strong>安全加固</strong>的目的，这是服务器运维中的一项基础但关键的安全措施，具体如下：</p>
+<p>输入命令<code>sudo vim /etc/ssh/sshd_config</code>修改文件，找到 <code>#Port 22</code>（默认是注释的），取消注释添加新的端口（例如 <strong>8765</strong>）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Port 22      <span class="comment"># 保留22端口（测试成功后再关闭）</span></span><br><span class="line">Port 8765    <span class="comment"># 新增一行，设置新端口</span></span><br></pre></td></tr></table></figure>
+
+<p>修改完成之后按下esc键，输入<code>:wq</code>并回车完成修改。</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702232953872.png" alt="image-20250702232953872"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim基本使用</span><br><span class="line">:wq <span class="comment">#保存退出</span></span><br><span class="line">:q <span class="comment">#不保存退出</span></span><br><span class="line">:q! <span class="comment">#强制不保存退出，如果有修改并且不想保存时使用，此时使用:q报错</span></span><br></pre></td></tr></table></figure>
+
+<p>实际操作过程中可能出现以下问题</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702233319909.png" alt="image-20250702233319909"></p>
+<p>直接按q退出，然后把vim的临时缓存文件删除就行了<code>sudo rm -rf /etc/ssh/.sshd_config.swp</code></p>
+<p>修改后使用命令重启<code>ssh</code>服务<code>sudo systemctl restart sshd</code></p>
+<p>放行防火墙，依次输出以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ufw allow 8765</span><br><span class="line"><span class="built_in">sudo</span> ufw reload</span><br></pre></td></tr></table></figure>
+
+<p>回到控制台，进入防火墙，添加刚刚设置的端口</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702233747397.png" alt="image-20250702233747397"></p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702234642883.png" alt="image-20250702234642883"></p>
+<p>然后重新开一个终端使用新端口登录</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702234922181.png" alt="image-20250702234922181"></p>
+<p>如果成功登录（<strong>一定一定要确认新端口可以登录，不然就锁外面了</strong>），再次修改文件<code>sudo vim /etc/ssh/sshd_config</code>，这次将22端口注释掉。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Port 22</span></span><br><span class="line">Port 8765</span><br></pre></td></tr></table></figure>
+
+<p>然后reload ssh服务<code>sudo systemctl restart sshd</code></p>
+<p>回到控制台，将防火墙的22端口禁掉</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702235244957.png" alt="image-20250702235244957"></p>
+<p>至此，修改22端口完成。</p>
+<h4 id="禁用密码，改用SSH密钥登录"><a href="#禁用密码，改用SSH密钥登录" class="headerlink" title="禁用密码，改用SSH密钥登录"></a>禁用密码，改用SSH密钥登录</h4><p>（施工ing）</p>
+<h3 id="域名准备"><a href="#域名准备" class="headerlink" title="域名准备"></a>域名准备</h3><p>图方便就在腾讯云平台买域名了，使用域名可以添加免费SSL证书，提高安全性，隐藏真实IP，直接使用域名访问酒馆更方便。</p>
+<p>域名找一些便宜的顶级域就行，什么<code>.fun</code>什么的，随便找一个便宜的就行，大概就十几块一年。</p>
+<p>具体配置腾讯云站内有详细教程，按教程来就行。</p>
+<h2 id="基础环境准备"><a href="#基础环境准备" class="headerlink" title="基础环境准备"></a>基础环境准备</h2><p>按图中命令查看服务器是否安装了<code>git，node，npm</code>，如果没有则使用APT包管理器进行安装。</p>
+<p><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/image-20250702235629181.png" alt="image-20250702235629181"></p>
+<h4 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#更新软件包列表</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="comment">#安装Git</span></span><br><span class="line"><span class="built_in">sudo</span> apt install git -y</span><br><span class="line"><span class="comment">#验证安装</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Node-js和npm"><a href="#安装Node-js和npm" class="headerlink" title="安装Node.js和npm"></a>安装Node.js和npm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加 NodeSource 官方仓库</span></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_lts.x | <span class="built_in">sudo</span> -E bash -</span><br><span class="line"><span class="comment">#安装</span></span><br><span class="line"><span class="built_in">sudo</span> apt install -y nodejs</span><br><span class="line"><span class="comment">#验证安装</span></span><br><span class="line">node -v  <span class="comment"># 检查 Node.js 版本</span></span><br><span class="line">npm -v   <span class="comment"># 检查 npm 版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="酒馆搭建"><a href="#酒馆搭建" class="headerlink" title="酒馆搭建"></a>酒馆搭建</h3><h4 id="详细步骤（简易搭建）"><a href="#详细步骤（简易搭建）" class="headerlink" title="详细步骤（简易搭建）"></a>详细步骤（简易搭建）</h4><ol>
+<li><p>拉取酒馆：</p>
+<ol>
+<li><p>切换路径<code>cd /usr/local/games/</code></p>
+</li>
+<li><p><code>sudo git clone https://github.com/SillyTavern/SillyTavern -b release</code></p>
+</li>
+<li><p>输出如下图：<img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/1.png"></p>
+</li>
+</ol>
+</li>
+<li><p>进入SillyTavern目录执行start脚本安装相关依赖（建议赋权<code>sudo chmod -R 777 SillyTavern/*</code>），如图：<br><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/2.png">输出如图：<img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/3.png"></p>
+</li>
+<li><p>修改配置文件<code>sudo vim config.yaml</code></p>
+<ol>
+<li><p><code>listen:ture</code></p>
+</li>
+<li><p><code>port:7890</code>(自定义，需确保防火墙释放端口，分别是腾讯控制台防火墙和终端使用ufw放行，具体操作可以看[修改22端口](#### 修改22端口))</p>
+</li>
+<li><p><code>basicAuthMode:true</code>（登录需要账号密码）</p>
+</li>
+<li><p><code>basicAuthUser</code>(设置登录账号密码)</p>
+</li>
+<li><p><code>whitelistMode:false</code>（禁用白名单，不限制ip）</p>
+</li>
+</ol>
+</li>
+<li><p>再次执行start脚本启动，输入<strong>ip+端口</strong>进行访问，输入账号密码进入，浏览器页面如图：<br><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/4.png"></p>
+</li>
+<li><p>完结撒花！！</p>
+</li>
+</ol>
+<h3 id="进阶操作（caddy反代–推荐）"><a href="#进阶操作（caddy反代–推荐）" class="headerlink" title="进阶操作（caddy反代–推荐）"></a>进阶操作（caddy反代–推荐）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载并运行官方安装脚本</span></span><br><span class="line"><span class="built_in">sudo</span> apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line"></span><br><span class="line">curl -1sLf <span class="string">&#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27;</span> | <span class="built_in">sudo</span> gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line">curl -1sLf <span class="string">&#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt install caddy</span><br></pre></td></tr></table></figure>
+
+<p>验证安装<code>caddy version</code></p>
+<p>caddy是一个轻量级的反代服务器，并且可以自动配置管理SSL证书。</p>
+<p>简易配置文件<code>CaddyFile</code>如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SillyTavern 服务</span></span><br><span class="line">XXXX.XXX &#123; <span class="comment">#域名</span></span><br><span class="line"><span class="comment">#如果有自己单独申请的证书，证书路径请自己放好，示例路径：/etc/ssl/caddy/**,没有就不需要</span></span><br><span class="line">        tls /etc/ssl/caddy/XXXX.XXX_bundle.crt /etc/ssl/caddy/XXXX.XXX.key</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#内容压缩，减少数据传输量，提高网站加载速度</span></span><br><span class="line">        encode zstd gzip</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#caddy日志</span></span><br><span class="line">        <span class="built_in">log</span> &#123;</span><br><span class="line">                level info</span><br><span class="line">                output file /var/log/caddy/xxxx.xxx.log</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用正则表达式匹配上传路径</span></span><br><span class="line">        @bigUpload &#123;</span><br><span class="line">                method POST</span><br><span class="line">                path /upload*  <span class="comment"># 匹配所有以/upload开头的路径</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        route @bigUpload &#123;</span><br><span class="line">                request_body &#123;</span><br><span class="line">                        max_size 100MiB <span class="comment">#这个一定要大一点，角色卡的聊天记录需要</span></span><br><span class="line">                &#125;</span><br><span class="line">                reverse_proxy localhost:xxxx &#123;#端口号(示例：7867)</span><br><span class="line">                        transport http &#123;</span><br><span class="line">                                read_timeout 600s</span><br><span class="line">                                keepalive 30s</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 其他请求正常代理</span></span><br><span class="line">        reverse_proxy localhost:xxxx &#123;#端口号(示例：7867)</span><br><span class="line">                transport http &#123;</span><br><span class="line">                        read_timeout 600s</span><br><span class="line">                        keepalive 30s</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>sudo systemctl start caddy</code> 启动caddy，使用<code>sudo systemctl status caddy</code>查看状态，使用浏览器输入域名进入sillytavern页面，至此caddy代理域名访问完成。</p>
+<h3 id="后台启动sillytavern（pm2实现）"><a href="#后台启动sillytavern（pm2实现）" class="headerlink" title="后台启动sillytavern（pm2实现）"></a>后台启动sillytavern（pm2实现）</h3><p>在 <strong>Ubuntu</strong> 上安装 <strong>PM2</strong>（Node.js 进程管理器）可以为你的应用提供 <strong>进程守护、负载均衡、日志管理</strong> 等功能。</p>
+<p>如果只是单纯的使用脚本启动，ssh连接断开后sillytavern就会自动断连，使用pm2可以方便后台启动以及日志管理</p>
+<h4 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h4><ol>
+<li><p>全局安装<code>sudo npm install pm2@latest -g</code></p>
+</li>
+<li><p>验证<code>pm2 --version</code></p>
+</li>
+<li><p>进入sillytavern目录执行<code>pm2 start start.sh --name sillytavern</code>即可</p>
+</li>
+<li><p>可使用<code>pm2 list</code>、<code>pm2 monit</code>、<code>pm2 start logs sillytavern</code>进行进程监控以及日志查看</p>
+</li>
+<li><p>成功后如图：<br><img src="https://raw.githubusercontent.com/0chiefx/imageRep/main/5.png"></p>
+</li>
+</ol>
+<h4 id="持久化进程（开机自启）"><a href="#持久化进程（开机自启）" class="headerlink" title="持久化进程（开机自启）"></a>持久化进程（开机自启）</h4><p>（施工）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">ChiefX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/">http://example.com/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sudo Cheers</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/sillytavern/">sillytavern</a></div><div class="post-share"><div class="social-share" data-image="/image/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/06/24/%E9%94%81/" title="mysql-锁"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">mysql-锁</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/06/15/%E4%BA%91%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%AA%E4%BA%BA%E7%94%A8%EF%BC%89/" title="云酒馆搭建（个人用）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-15</div><div class="info-item-2">云酒馆搭建（个人用）</div></div><div class="info-2"><div class="info-item-1">云酒馆搭建（个人用）目标：通过腾讯轻量应用服务器搭建sillytavern并使用nginx进行反向代理，实现域名访问。配置及环境 腾讯轻量应用服务器2H2G 50G 峰值带宽 30Mbps  Ubuntu Server 22.04 LTS 64bit  nginx version: nginx&#x2F;1.18.0 (Ubuntu)  Caddy version:v2.10.0  node v22.16.0  Chrome版本 137.0.7151.104（正式版本） （64 位）   详细步骤（简易搭建） 初步环境搭建：需准备git，node.js  拉取酒馆：  切换路径cd /usr/local/games/  sudo git clone https://github.com/SillyTavern/SillyTavern -b release  输出如下图：    进入SillyTavern目录执行start脚本安装相关依赖（建议赋权sudo chmod -R 777 SillyTavern/*），如图：输出如图：  修改配置文件sudo vim...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">ChiefX</div><div class="author-info-description">闲得无聊搞一个sillyTavern问题站</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">从零开始的VPS酒馆搭建（喂饭教程）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.</span> <span class="toc-text">服务器相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.1.</span> <span class="toc-text">服务器选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.2.</span> <span class="toc-text">服务器基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%8C%E5%BB%BA%E8%AE%AE%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">服务器安全（可选，建议）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B922%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">修改22端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%AF%86%E7%A0%81%EF%BC%8C%E6%94%B9%E7%94%A8SSH%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">禁用密码，改用SSH密钥登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.2.4.</span> <span class="toc-text">域名准备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">基础环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GIT"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">安装GIT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Node-js%E5%92%8Cnpm"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">安装Node.js和npm</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text">酒馆搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4%EF%BC%88%E7%AE%80%E6%98%93%E6%90%AD%E5%BB%BA%EF%BC%89"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">详细步骤（简易搭建）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C%EF%BC%88caddy%E5%8F%8D%E4%BB%A3%E2%80%93%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">进阶操作（caddy反代–推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8sillytavern%EF%BC%88pm2%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">后台启动sillytavern（pm2实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">步骤如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E8%BF%9B%E7%A8%8B%EF%BC%88%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%89"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">持久化进程（开机自启）</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/02/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84VPS%E9%85%92%E9%A6%86%E6%90%AD%E5%BB%BA%EF%BC%88%E5%96%82%E9%A5%AD%E6%95%99%E7%A8%8B%EF%BC%89/" title="从零开始的VPS酒馆搭建（喂饭教程）">从零开始的VPS酒馆搭建（喂饭教程）</a><time datetime="2025-07-02T15:12:19.000Z" title="发表于 2025-07-02 23:12:19">2025-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/SQL%E4%BC%98%E5%8C%96/" title="sql优化">sql优化</a><time datetime="2025-06-24T09:12:19.000Z" title="发表于 2025-06-24 17:12:19">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/%E4%BA%8B%E5%8A%A1/" title="事务">事务</a><time datetime="2025-06-24T09:12:19.000Z" title="发表于 2025-06-24 17:12:19">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="存储引擎">存储引擎</a><time datetime="2025-06-24T09:12:19.000Z" title="发表于 2025-06-24 17:12:19">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/%E7%B4%A2%E5%BC%95/" title="索引">索引</a><time datetime="2025-06-24T09:12:19.000Z" title="发表于 2025-06-24 17:12:19">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By ChiefX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
